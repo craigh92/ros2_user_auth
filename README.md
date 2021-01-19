@@ -7,7 +7,7 @@ ROS2 User Auth is a collection of ROS2 packages for adding user permissions to a
 | interceptor |  A base class Interceptor Node for creating intercepted Actions and Services. The API is similar to the ROS2 base Node class. Also includes the abstract filter class used by the Interceptor Node. | 
 | std_authorised_srvs | An authorised equivelent for all the `std_srvs`. The authorised versions have two extra fields request fields, a UUID representing the user that called the service, and the name of the service this message is being used for |
 | user_authentication (ToDo) | Package for validating that a user is who they say they are using LDAP |
-| user_authorisation (ToDo) | Implements the abstract filter from the interceptor package as an AuthorisingFilter. This checks that the user is permitted to call the Action or Service. The list of permitted Actions or Services for a user is looked using LDAP |
+| user_authorisation (ToDo) | Implements the abstract filter from the interceptor package as an AuthorisingFilter. This checks that the user is permitted to call the Action or Service. The list of permitted Actions or Services for a user is looked up using LDAP |
 
 ### Motivations
 
