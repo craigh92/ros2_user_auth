@@ -1,0 +1,10 @@
+{
+    "python.autoComplete.extraPaths" : [
+        "C:/dev/ros2_foxy/Lib/site-packages",
+        "C:/Users/chickman/user_auth/install/std_authorised_srvs/lib/site-packages"
+    ],
+    "python.analysis.extraPaths": [
+        "C:/dev/ros2_foxy/Lib/site-packages",
+        "C:/Users/chickman/user_auth/install/std_authorised_srvs/lib/site-packages"
+    ]
+}

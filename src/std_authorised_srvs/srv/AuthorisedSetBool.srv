@@ -1,0 +1,8 @@
+# A std_srv/SetBool with an attached token given by an authentiction server.
+# The server hosting this service will use the token to determine if this request is authorised.
+
+unique_identifier_msgs/UUID auth_token  
+bool data # e.g. for hardware enabling / disabling
+---
+bool success   # indicate successful run of triggered service
+string message # informational, e.g. for error messages

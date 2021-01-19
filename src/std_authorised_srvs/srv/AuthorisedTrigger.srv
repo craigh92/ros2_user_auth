@@ -1,0 +1,7 @@
+# A std_srv/Trigger with an attached token given by an authentiction server.
+# The server hosting this service will use the token to determine if this request is authorised.
+
+unique_identifier_msgs/UUID auth_token  
+---
+bool success   # Indicate successful run of triggered service.
+string message # Informational, e.g. for error messages.

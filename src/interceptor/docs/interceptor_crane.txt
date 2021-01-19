@@ -1,0 +1,27 @@
+title ROS2 Interceptor
+
+User -> Authentication Server Node: Request user_token \n   (ROS2 UUID)
+Authentication Server Node -> LDAP Server: Look up currently \n  logged in user
+LDAP Server -> Authentication Server Node: Return currently \n  logged in user
+Authentication Server Node -> Authentication Server Node: Generate user_token
+Authentication Server Node -> User: Send user_token
+User -> Crane Interceptor Node:      Send enable crane request\n (AuthenticatedTrigger_Request)
+Crane Interceptor Node -> AuthorisingFilter: Put request through filter
+AuthorisingFilter->LDAP Server: Look up list of services that user can call
+LDAP Server->AuthorisingFilter: Return list of services that user can call
+AuthorisingFilter->AuthorisingFilter:    Check if user can \n call requested service
+alt pass case
+AuthorisingFilter->AuthorisingFilter:                 Convert \nAuthenticatedTrigger_Request \n         to Trigger_Request
+else fail case
+AuthorisingFilter->AuthorisingFilter: Discard message
+end
+AuthorisingFilter -> Crane Interceptor Node: Return [Optional] \n  Trigger_Request
+alt Not filtered
+Crane Interceptor Node -> Crane Node: Send Trigger_Request
+Crane Node -> Crane Interceptor Node: Send Trigger_Response
+else Filtered
+end
+Crane Interceptor Node -> AuthorisingFilter:    Put [Optional] \nTrigger_Response \n    through filter
+AuthorisingFilter->AuthorisingFilter:            Convert [Optional] \n         Trigger_Response to \n AuthenticatedTrigger_Response
+AuthorisingFilter -> Crane Interceptor Node:                    Return \nAuthenticatedTrigger_Response
+Crane Interceptor Node -> User:                     Send \n AuthenticatedTrigger_Response

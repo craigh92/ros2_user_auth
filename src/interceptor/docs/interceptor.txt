@@ -1,0 +1,19 @@
+title ROS2 Interceptor
+
+User -> Interceptor Node:          Send Interceptor request \n (e.g request with added UUID field)
+Interceptor Node -> Filter(Abstract): Put request through filter
+alt pass case
+Filter(Abstract)->Filter(Abstract):   @abstractmethod \n Convert message to \n     Target request
+else fail case
+Filter(Abstract)->Filter(Abstract):   @abstractmethod \n  Swallow message
+end
+Filter(Abstract) -> Interceptor Node: Return [Optional] \n  Target request
+alt Not filtered
+Interceptor Node -> Target Node: Send Target request
+Target Node -> Interceptor Node: Send Target response
+else Filtered
+end
+Interceptor Node -> Filter(Abstract): Put [Optional] response \n        through filter
+Filter(Abstract)->Filter(Abstract):   @abstractmethod \n Convert message to \n Interceptor response
+Filter(Abstract) -> Interceptor Node: Return Interceptor \n      response
+Interceptor Node -> User:     Send Interceptor response \n (e.g response with pass/fail info)
