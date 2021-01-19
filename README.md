@@ -38,7 +38,7 @@ class ExampleInterceptorNode(InterceptorNode):
         )
 ```
 
-The filter parameter is ab object that implemements the abstract base class `Filter` from the `interceptor` package
+The filter parameter is any object that implemements the abstract base class `Filter` from the `interceptor` package
 
 ```python
 class Filter(ABC, Generic[InterceptorSrvRequest, TargetSrvRequest, InterceptorSrvResponse, TargetSrvResponse]):
