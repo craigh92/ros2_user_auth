@@ -19,7 +19,7 @@ The Interceptor Node is not coupled to the authorsation or authentication method
 
 Instead of the client directly calling the action or service of the target Node, they instead call an intercepted version of this action or service. The intercepted service type does not have to be the same message type as the target service type as a custom conversion is performed. When the interceptor Node recieves a request, it uses a Filter to check if this request passes some condition and disards it if it does not. If it does pass the filter, it is converted to the target service type and delegated to the target Node. The optional response from the target (optional because discarded requests will not get a response) is then converted to an interceptor response and returned to the client.
 
-Creating an intercepted service is similar to creating a regular service:
+Creating an intercepted service is similar to creating a regular service, but instead of a callback parameter you pass it the target service name and type, and a filter that determines if the request should be discarded, and how to convert between the intercepted and target service types.
 
 ```python
 class ExampleInterceptorNode(InterceptorNode):
