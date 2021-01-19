@@ -62,7 +62,7 @@ class Filter(ABC, Generic[InterceptorSrvRequest, TargetSrvRequest, InterceptorSr
 
 For example:
 
-```
+```python
 class AuthorisedTriggerFilter(Filter):
 
     def __init__(self):
